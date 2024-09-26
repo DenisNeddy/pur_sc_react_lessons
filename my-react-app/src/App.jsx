@@ -1,5 +1,6 @@
-
+import Button from './components/Button';
 import './App.css';
+
 
 function App() {
 
@@ -9,6 +10,7 @@ function App() {
     <>
     <h1>какого черта</h1>
     <div>Проо</div>
+    <Button />
     
     </>
   )

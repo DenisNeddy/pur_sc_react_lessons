@@ -1,11 +1,8 @@
+/* eslint-disable react/prop-types */
 import './JournalItem.css';
 
-const JournalItem = () => {
-    const title = 'Подготовка к обновлению курсов';
-    const date = new Date();
-    const text = 'Горные походы открывают удивительные природные ландшафты';
-
-
+const JournalItem = ({title, date, text}) => {
+ 
     return (
         <div className="journal-item">
             <h2 className="journal-item__header">{title}</h2>

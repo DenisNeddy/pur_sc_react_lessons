@@ -1,5 +1,6 @@
-import Button from './components/Button';
+import Button from './components/Button/Button.jsx';
 import './App.css';
+import JournalItem from './components/JournalItem/JournalItem.jsx';
 
 
 function App() {
@@ -8,12 +9,11 @@ function App() {
 
   return (
     <>
-    <h1>какого черта</h1>
-    <div>Проо</div>
-    <Button />
     
+    <Button />
+    <JournalItem />
     </>
-  )
+  );
 }
 
 export default App;

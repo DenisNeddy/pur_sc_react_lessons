@@ -1,7 +1,12 @@
-import Button from './components/Button/Button.jsx';
+
 import './App.css';
 import JournalItem from './components/JournalItem/JournalItem.jsx';
 import CardButton from './components/CardButton/CardButton.jsx';
+import LeftPanel from './layouts/LeftPanel/LeftPanel.jsx';
+import Body from './layouts/Body/Body.jsx';
+import Header from './components/Header/Header.jsx';
+import JournalList from './components/JournalList/JournalList.jsx';
+
 
 
 function App() {
@@ -20,24 +25,33 @@ function App() {
 	];
 
 	return (
-		<>
+		<div className='app'>
+		  <LeftPanel>			
+				<Header/>
+				<JournalList>
+					<CardButton> 
+						<JournalItem 
+							title={data[0].title}
+							text={data[0].text}
+							date={data[0].date}
+						/>
+					</CardButton>
+					<CardButton> 
+						<JournalItem 
+							title={data[1].title}
+							text={data[1].text}
+							date={data[1].date}
+						/>
+					</CardButton>
+				</JournalList>
+		  </LeftPanel>
+		  <Body>
+			Тут может быть ваша реклама 
+		  </Body>
     
-			<Button />
-			<CardButton> 
-				<JournalItem 
-					title={data[0].title}
-					text={data[0].text}
-					date={data[0].date}
-				/>
-			</CardButton>
+			
 		
-			<JournalItem 
-				title={data[1].title}
-				text={data[1].text}
-				date={data[1].date}
-			/>
-
-		</>
+		</div>
 	);
 }
 

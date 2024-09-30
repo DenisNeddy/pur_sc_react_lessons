@@ -5,7 +5,7 @@ const Button = () => {
 	const [text, setText] = useState('Сохранить');
 	const clicked = () => {
 		setText('Закрыть');
-		setText(v => v + '!');
+		// setText(v => v + '!');
 		console.log(text);
 	};
 	return (

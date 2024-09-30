@@ -1,9 +1,12 @@
 import CardButton from '../CardButton/CardButton';
-import './JournalAddButton';
+import './JournalAddButton.css';
 
 const JournalAddButton = () => {
 	return (
-		<CardButton className="journal-add">Новое воспоминание</CardButton>
+		<CardButton className="journal-add">
+			<img src="/icon_plus.svg" />
+            Новое воспоминание
+		</CardButton>
 	);
 };
 

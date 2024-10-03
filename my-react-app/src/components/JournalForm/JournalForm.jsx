@@ -47,11 +47,30 @@ const JournalForm = ({onSubmit}) => {
 
 	return (
 		<form className={styles['journal-form']} onSubmit={addJournalItem}>
-			<input type="text" name="title" className={cn(styles['input'], {
-				[styles['invalid']]: !formValidState.title
-			})} />
-			<input type="date" name="date" className={`${styles['input']} ${formValidState.date ? '' : styles['invalid']}`} />
-			<input type="text" name="tag" />
+			<div>
+
+				<input type="text" name="title" className={cn(styles['input'], styles['input-title'], {
+					[styles['invalid']]: !formValidState.title
+				})} />
+			</div>
+			<div className={styles['form-row']}>
+				<label htmlFor='date-id' className={styles['form-label']}>
+					<img src="icon-date.svg" alt="Иконка календаря" />
+					<span className={styles['form-label__text']}>Дата</span>
+				</label>
+				<input type="date" name="date" id="date-id" className={`${styles['input']} ${styles['input__date']} ${formValidState.date ? '' : styles['invalid']}`} />
+			</div>
+
+			<div className={styles['form-row']}>
+				<label htmlFor="tag-id" className={styles['form-label']}>
+					<img src="icon-tag.svg" alt="Иконка папки" />
+					<span className={styles['form-label__text']}>Метки</span>
+				</label>
+				
+				<input type="text" name="tag" id="tag-id" className={styles['input']}/>
+			</div>
+
+			
 			<textarea name="text" id="" cols="30" rows="10"  className={`${styles['input']} ${formValidState.text ? '' : styles['invalid']}`} ></textarea>
 			<Button text="Сохранить" />
 		</form>

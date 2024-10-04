@@ -34,15 +34,18 @@ const JournalForm = ({onSubmit}) => {
 	useEffect(() => {
 		if(isFormReadyToSubmit) {
 			onSubmit(values);
+			dispatchForm( {type: 'CLEAR'});
 		}
 	}, [isFormReadyToSubmit]);
+
+	const onChange = (e) => {
+		dispatchForm({type: 'SET_VALUE', payload: {[e.target.name]: e.target.value}});
+	};
 	
 
 	const addJournalItem = (e) => {
 		e.preventDefault();
-		const formData = new FormData(e.target);
-		const formProps = Object.fromEntries(formData);
-		dispatchForm({type: 'SUBMIT', payload: formProps});
+		dispatchForm({type: 'SUBMIT'});
 	
 	
 	
@@ -53,7 +56,7 @@ const JournalForm = ({onSubmit}) => {
 		<form className={styles['journal-form']} onSubmit={addJournalItem}>
 			<div>
 
-				<input type="text" name="title" className={cn(styles['input'], styles['input-title'], {
+				<input type="text" onChange={onChange} value={values.title} name="title" className={cn(styles['input'], styles['input-title'], {
 					[styles['invalid']]: !formState.isValid.title
 				})} />
 			</div>
@@ -62,7 +65,7 @@ const JournalForm = ({onSubmit}) => {
 					<img src="icon-date.svg" alt="Иконка календаря" />
 					<span className={styles['form-label__text']}>Дата</span>
 				</label>
-				<input type="date" name="date" id="date-id" className={`${styles['input']} ${styles['input__date']} ${isValid.date ? '' : styles['invalid']}`} />
+				<input type="date" onChange={onChange} value={values.date} name="date" id="date-id" className={`${styles['input']} ${styles['input__date']} ${isValid.date ? '' : styles['invalid']}`} />
 			</div>
 
 			<div className={styles['form-row']}>
@@ -71,11 +74,11 @@ const JournalForm = ({onSubmit}) => {
 					<span className={styles['form-label__text']}>Метки</span>
 				</label>
 				
-				<input type="text" name="tag" id="tag-id" className={styles['input']}/>
+				<input type="text" name="tag" onChange={onChange} value={values.tag} id="tag-id" className={styles['input']}/>
 			</div>
 
 			
-			<textarea name="text" id="" cols="30" rows="10"  className={`${styles['input']} ${isValid.text ? '' : styles['invalid']}`} ></textarea>
+			<textarea name="text" id="" cols="30" rows="10" onChange={onChange} value={values.text} className={`${styles['input']} ${isValid.text ? '' : styles['invalid']}`} ></textarea>
 			<Button text="Сохранить" />
 		</form>
 	);

@@ -19,23 +19,6 @@ function mapItems(items) {
 	}));
 }
 
-
-
-// const INITIAL_DATA = [
-// 	{   id: 1,
-// 		title: 'Подготовка к обновлению курсов',
-// 		text: 'Горные походы открывают удивительные природные ланшафты',
-// 		date: new Date()
-// 	},
-// 	{   id: 2,
-// 		title: 'Подготовка курсов 2.0',
-// 		text: 'что то еще очень важное я стал забывать',
-// 		date: new Date()
-// 	}
-// ];
-
-console.log('муха');
-
 function App() {
 
 	const [ items, setItems] = useLocalStorage('data');

@@ -1,3 +1,5 @@
+
+
 export const INITIAL_STATE = {
 	isValid: {
 		text: true,
@@ -8,7 +10,8 @@ export const INITIAL_STATE = {
 		text: '',
 		title: '',
 		date: '',
-		tag: ''
+		tag: '', 
+		user: 1
 	},
 	isFormReadyToSubmit: false
 };

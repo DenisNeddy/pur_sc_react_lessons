@@ -1,10 +1,13 @@
 
 import styles from './JournalForm.module.css';
 import Button from '../Button/Button.jsx';
-import { useReducer, useEffect, useRef, useContext } from 'react';
+import { useReducer, useEffect, useRef, useContext} from 'react';
 import { formReducer, INITIAL_STATE } from './JournalForm.state.js';
 import Input from '../Input/Input.jsx';
-import { UserContext } from '../../contenxt/user.context.js';
+import { UserContext } from '../../contenxt/user.context.jsx';
+
+// import { UserContextProvider } from '../../contenxt/user.context.jsx';
+
 
 
 // const INITIAL_STATE = {
@@ -20,7 +23,7 @@ const JournalForm = ({onSubmit}) => {
 	const titleRef = useRef();
 	const dateRef = useRef();
 	const textRef = useRef();
-	const {userId} =useContext(UserContext);
+	const { userId } = useContext(UserContext);
 
 	const focusError = (isValid) => {
 		switch(true) {
@@ -37,7 +40,7 @@ const JournalForm = ({onSubmit}) => {
 
 	useEffect(() => {
 		let timerId;
-		if(!isValid.date || !isValid.date || !isValid.date) {
+		if(!isValid.title || !isValid.date || !isValid.text) {
 			timerId = setTimeout(() => {
 				focusError(isValid);
 				dispatchForm({type: 'RESET_VALIDITY'});		
@@ -55,6 +58,11 @@ const JournalForm = ({onSubmit}) => {
 		}
 	}, [isFormReadyToSubmit,values, onSubmit]);
 
+	useEffect(() => {
+		dispatchForm({type: 'SET_VALUE', payload: {userId}});
+	}
+	, [userId]);
+
 	const onChange = (e) => {
 		dispatchForm({type: 'SET_VALUE', payload: {[e.target.name]: e.target.value}});
 	};
@@ -67,7 +75,9 @@ const JournalForm = ({onSubmit}) => {
 	return (
 		
 		<form className={styles['journal-form']} onSubmit={addJournalItem}>
-			{userId}
+			<div>
+				
+			</div>
 			<div>
 				<Input type="text" ref={titleRef} isValid={isValid.title} onChange={onChange} value={values.title} name="title"   appearence="title" />
 			</div>

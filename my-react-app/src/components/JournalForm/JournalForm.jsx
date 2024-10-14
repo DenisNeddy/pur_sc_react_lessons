@@ -16,7 +16,7 @@ import { UserContext } from '../../contenxt/user.context.jsx';
 // 	date: true
 // };
 
-const JournalForm = ({onSubmit}) => {
+const JournalForm = ({onSubmit, data }) => {
 	// const [formValidState, setFormValidState] = useState(INITIAL_STATE);
 	const [formState, dispatchForm] = useReducer(formReducer, INITIAL_STATE);
 	const {isValid, isFormReadyToSubmit, values} = formState;
@@ -39,6 +39,10 @@ const JournalForm = ({onSubmit}) => {
 	};
 
 	useEffect(() => {
+		dispatchForm({type: 'SET_VALUE', payload: {...data}});
+	}, [data]);
+
+	useEffect(() => {
 		let timerId;
 		if(!isValid.title || !isValid.date || !isValid.text) {
 			timerId = setTimeout(() => {
@@ -55,8 +59,10 @@ const JournalForm = ({onSubmit}) => {
 		if(isFormReadyToSubmit) {
 			onSubmit(values);
 			dispatchForm( {type: 'CLEAR'});
+			dispatchForm({type: 'SET_VALUE', payload: {userId}});
+		
 		}
-	}, [isFormReadyToSubmit,values, onSubmit]);
+	}, [isFormReadyToSubmit,values, onSubmit, userId]);
 
 	useEffect(() => {
 		dispatchForm({type: 'SET_VALUE', payload: {userId}});
@@ -86,7 +92,7 @@ const JournalForm = ({onSubmit}) => {
 					<img src="icon-date.svg" alt="Иконка календаря" />
 					<span className={styles['form-label__text']}>Дата</span>
 				</label>
-				<Input type="date" ref={dateRef} isValid={isValid.date} onChange={onChange} value={values.date} name="date" id="date-id"/>
+				<Input type="date" ref={dateRef} isValid={isValid.date} onChange={onChange} value={values.date ? new Date(values.date).toISOString().slice(0, 10) : ''} name="date" id="date-id"/>
 			</div>
 
 			<div className={styles['form-row']}>

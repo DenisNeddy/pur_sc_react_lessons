@@ -1,9 +1,9 @@
 import CardButton from '../CardButton/CardButton';
 import './JournalAddButton.css';
 
-const JournalAddButton = () => {
+const JournalAddButton = ({clearForm}) => {
 	return (
-		<CardButton className="journal-add">
+		<CardButton onClick={clearForm} className="journal-add">
 			<img src="/icon_plus.svg" />
             Новое воспоминание
 		</CardButton>
